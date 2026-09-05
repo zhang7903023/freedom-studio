@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SEO from "../components/SEO.astro";
+import { ADVANCED } from "../config";
 
 interface Props {
   /** 传空则用默认站点 title */
@@ -38,6 +39,10 @@ const props = Astro.props;
       })();
     </script>
     <SEO {...props} />
+    <!-- 后台「高级设置」注入的自定义 Head 代码（统计/验证 meta 等） -->
+    {ADVANCED.customHead && <fragment set:html={ADVANCED.customHead} />}
+    <!-- 后台「高级设置」注入的自定义 CSS -->
+    {ADVANCED.customCss && <style is:inline set:html={ADVANCED.customCss} />}
   </head>
   <body>
     <Header path={props.path ?? Astro.url.pathname} />

@@ -22,6 +22,7 @@ const data = siteData as {
   services: { title: string; description: string; scope: string }[];
   categories: { key: string; label: string; description: string }[];
   nav: { text: string; href: string }[];
+  advanced: { customCss: string; customHead: string };
 };
 
 export const SITE = {
@@ -99,3 +100,9 @@ export const SERVICES = data.services;
 
 /** 导航（后台「站点设置」里可增删改） */
 export const NAV = data.nav;
+
+/** 高级自定义：注入到每个页面的 CSS / Head 代码（后台「高级设置」里改） */
+export const ADVANCED = {
+  customCss: data.advanced.customCss ?? "",
+  customHead: data.advanced.customHead ?? "",
+};

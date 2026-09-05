@@ -157,6 +157,22 @@ collections:
               - label: 链接
                 name: href
                 widget: string
+          - label: 高级设置（懂代码再用，改坏了全站背锅）
+            name: advanced
+            widget: object
+            fields:
+              - label: 自定义 CSS
+                name: customCss
+                widget: code
+                default_language: css
+                required: false
+                hint: 直接覆盖全站样式，例如改颜色、字号。保存后 1 分钟生效
+              - label: 自定义 Head 代码
+                name: customHead
+                widget: code
+                default_language: html
+                required: false
+                hint: 原样注入每个页面 <head>，可放统计脚本、搜索引擎验证 meta 等
   - name: blog
     label: 博客文章
     folder: src/content/blog

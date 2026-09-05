@@ -66,5 +66,9 @@
     { "text": "关于", "href": "/about/" },
     { "text": "服务", "href": "/services/" },
     { "text": "联系", "href": "/contact/" }
-  ]
+  ],
+  "advanced": {
+    "customCss": "",
+    "customHead": ""
+  }
 }

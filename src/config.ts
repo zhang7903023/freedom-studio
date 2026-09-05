@@ -9,7 +9,7 @@ export const SITE = {
   /** 英文名（必要位置使用） */
   nameEn: "Ziyouxing Studio",
   /** 顶栏导航 Logo 只显示这几个字 */
-  navName: "自由行",
+  navName: "X",
   /** 首页 Hero 大标题（不要放站名） */
   heroTitle: "做过的，才写。",
   /** 副标题 */

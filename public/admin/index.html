@@ -9,17 +9,9 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <p id="cms-loader-status" role="status">正在加载内容后台…</p>
+    <button id="cms-loader-retry" type="button" hidden>重试</button>
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-    <script>
-      // 手动加载 config（带时间戳绕缓存），解析后交给 CMS，避免 CDN 缓存旧配置
-      fetch("config.yml?t=" + Date.now(), { cache: "no-store" })
-        .then(function (r) { return r.text(); })
-        .then(function (t) {
-          window.CMS_CONFIG = jsyaml.load(t);
-          var s = document.createElement("script");
-          s.src = "https://unpkg.com/decap-cms@3.16.0/dist/decap-cms.js";
-          document.body.appendChild(s);
-        });
-    </script>
+    <script src="./loader.js"></script>
   </body>
 </html>

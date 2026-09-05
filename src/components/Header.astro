@@ -170,7 +170,9 @@ const current = (p: string) =>
 
     themeBtn?.addEventListener("click", () => {
       const dark = document.documentElement.classList.toggle("dark");
-      localStorage.setItem("theme", dark ? "dark" : "light");
+      try {
+        localStorage.setItem("theme", dark ? "dark" : "light");
+      } catch { /* 存储不可用不影响当前页面的主题切换 */ }
       applyThemeState();
     });
 

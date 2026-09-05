@@ -33,9 +33,11 @@ const props = Astro.props;
     <!-- 主题初始化：默认浅色；只有用户明确切到深色（localStorage）才用深色 -->
     <script is:inline>
       (function () {
-        if (localStorage.getItem("theme") === "dark") {
-          document.documentElement.classList.add("dark");
-        }
+        try {
+          if (localStorage.getItem("theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch { /* 存储不可用时仍正常显示默认主题 */ }
       })();
     </script>
     <SEO {...props} />

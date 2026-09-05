@@ -134,11 +134,12 @@ collections:
           - label: 分类管理
             name: categories
             widget: list
-            hint: 新增分类后，写文章时分类名填这里的「显示名称」即可自动归类。key 用英文小写加短横线，别用中文
+            hint: 写文章时从这里选择分类。修改显示名称后须同步旧文章分类；key 是已有网址的一部分，请保持稳定。
             fields:
               - label: key（URL 英文标识）
                 name: key
                 widget: string
+                pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', '请使用英文小写、数字和短横线']
               - label: 显示名称
                 name: label
                 widget: string
@@ -195,9 +196,13 @@ collections:
         format: "YYYY-MM-DD"
       - label: 分类
         name: category
-        widget: string
-        default: 随笔
-        hint: 建议：AI 工具 / 建站 / 折腾记录 / 创业笔记
+        widget: relation
+        collection: settings
+        file: site_settings
+        search_fields: ["categories.*.label"]
+        display_fields: ["categories.*.label"]
+        value_field: "categories.*.label"
+        hint: 从站点设置中的分类选择，避免输入不存在的分类
       - label: 标签
         name: tags
         widget: list

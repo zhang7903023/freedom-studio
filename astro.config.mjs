@@ -10,7 +10,7 @@ export default defineConfig({
       // 分页页不进 sitemap（/blog/ 本身保留，避免与首页/列表页重复内容）
       filter: (page) => {
         const path = new URL(page).pathname;
-        return !/^\/blog\/(page\/)?\d+\/$/.test(path);
+        return !path.startsWith("/studio/") && !/^\/blog\/(page\/)?\d+\/$/.test(path);
       },
     }),
   ],

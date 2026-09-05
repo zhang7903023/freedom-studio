@@ -37,7 +37,7 @@ const fullTitle =
   title && title !== SITE.name ? `${title}｜${SITE.name}` : title || SITE.title;
 const canonical = new URL(path, siteOrigin).href;
 const ogImage = new URL(image, siteOrigin).href;
-const logoUrl = new URL("/favicon.svg", siteOrigin).href;
+const logoUrl = new URL("/logo.png", siteOrigin).href;
 
 const siteJsonLd: Record<string, unknown>[] = includeSiteSchema
   ? [

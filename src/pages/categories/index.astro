@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CategoryList from "../../components/CategoryList.astro";
+
+---
+
+<BaseLayout
+  title="分类"
+  description="按分类浏览全部文章：AI 实战、网站与 SEO、海外工具、数码折腾、创业笔记。"
+  path="/categories/"
+>
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">分类</h1>
+      <p class="section-sub">每个分类只收录真实做过的事。</p>
+      <CategoryList />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 2.2rem;
+    margin: 0 0 8px;
+  }
+</style>

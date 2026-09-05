@@ -1,0 +1,26 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+// 只取 H2 / H3
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{toc.length > 0 && (
+  <nav class="toc" aria-label="文章目录">
+    <div class="toc-title">目录</div>
+    <ul>
+      {toc.map((h) => (
+        <li>
+          <a href={`#${h.slug}`} class:list={[h.depth === 3 && "toc-h3"]}>
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

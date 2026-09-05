@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT, SITE } from "../config";
+
+const channels = [
+  { label: "Email", value: CONTACT.email, href: CONTACT.email ? `mailto:${CONTACT.email}` : "" },
+  { label: "微信", value: CONTACT.wechat, href: "" },
+  { label: "Telegram", value: CONTACT.telegram, href: CONTACT.telegram ? `https://t.me/${CONTACT.telegram.replace("@", "")}` : "" },
+  { label: "WhatsApp", value: CONTACT.whatsapp, href: CONTACT.whatsapp ? `https://wa.me/${CONTACT.whatsapp.replace(/[^0-9]/g, "")}` : "" },
+  { label: "X", value: CONTACT.x, href: CONTACT.x ? `https://x.com/${CONTACT.x.replace("@", "")}` : "" },
+  { label: "YouTube", value: CONTACT.youtube, href: CONTACT.youtube },
+].filter((c) => c.value);
+---
+
+<BaseLayout
+  title="联系"
+  description={`联系${SITE.name}：通过 Email、微信、Telegram 等方式取得联系。`}
+  path="/contact/"
+>
+  <section class="section">
+    <div class="container narrow">
+      <h1 class="page-title">联系</h1>
+      <p class="section-sub">
+        有问题、有需求，或者只是想交流，都可以联系我。说明来意，回复会更快。
+      </p>
+
+      {channels.length > 0 ? (
+        <ul class="contact-list">
+          {channels.map((c) => (
+            <li>
+              <span class="ch-label">{c.label}</span>
+              {c.href ? (
+                <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">{c.value}</a>
+              ) : (
+                <span class="ch-value">{c.value}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div class="placeholder">
+          <p>联系方式正在整理中。</p>
+          <p class="hint">
+            在 <code>src/config.ts</code> 的 <code>CONTACT</code> 中填入 Email、微信、Telegram 等账号，这里会自动展示。
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 640px;
+  }
+  .page-title {
+    font-size: 2.2rem;
+    margin: 0 0 8px;
+  }
+  .contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ch-label {
+    width: 90px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .placeholder {
+    padding: 32px 0;
+    color: var(--text-secondary);
+  }
+  .placeholder .hint {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  .placeholder code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 5px;
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SERVICES, SITE } from "../config";
+---
+
+<BaseLayout
+  title="服务"
+  description={`${SITE.name} 提供的服务：网站搭建、AI 工具应用、SEO/GEO 基础优化、海外互联网工具支持、设备与软件技术服务。`}
+  path="/services/"
+>
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">服务</h1>
+      <p class="section-sub">
+        只列真正做过、能做好的事。有需要可以直接联系，先聊清楚问题，再谈要不要做。
+      </p>
+
+      <div class="service-grid">
+        {SERVICES.map((s) => (
+          <div class="service-item">
+            <h2>{s.title}</h2>
+            <p>{s.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="service-cta">
+        <h2>感兴趣？</h2>
+        <p>描述一下你的需求，我会直接告诉你能不能做、大概怎么做。</p>
+        <a href="/contact/" class="btn btn-primary">咨询 / 联系我</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 2.2rem;
+    margin: 0 0 8px;
+  }
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .service-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    background: var(--card-bg);
+  }
+  .service-item h2 {
+    font-size: 1.1rem;
+    margin: 0 0 10px;
+  }
+  .service-item p {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    margin: 0;
+    line-height: 1.7;
+  }
+  .service-cta {
+    margin-top: 72px;
+    text-align: center;
+    padding: 48px 24px;
+    background: var(--bg-subtle);
+    border-radius: 16px;
+  }
+  .service-cta h2 {
+    margin: 0 0 8px;
+    font-size: 1.4rem;
+  }
+  .service-cta p {
+    color: var(--text-secondary);
+    margin: 0 0 24px;
+  }
+</style>

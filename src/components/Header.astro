@@ -1,0 +1,215 @@
+---
+import { NAV, SITE } from "../config";
+
+interface Props {
+  path?: string;
+}
+
+const { path = "" } = Astro.props;
+const current = (p: string) =>
+  p === "/" ? path === "/" : path.startsWith(p);
+---
+
+<header class="site-header">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <div class="container header-inner">
+    <a href="/" class="brand">{SITE.name}</a>
+
+    <nav class="nav-desktop" aria-label="主导航">
+      {NAV.map((item) => (
+        <a href={item.href} class:list={[{ active: current(item.href) }]}>
+          {item.text}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <button
+        type="button"
+        class="theme-toggle"
+        id="theme-toggle"
+        aria-label="切换深浅色模式"
+        aria-pressed="false"
+      >
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="打开菜单"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav-mobile" id="mobile-nav" aria-label="移动端导航">
+    {NAV.map((item) => (
+      <a href={item.href} class:list={[{ active: current(item.href) }]}>
+        {item.text}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--header-bg);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .brand:hover {
+    text-decoration: none;
+  }
+  .nav-desktop {
+    display: flex;
+    gap: 28px;
+  }
+  .nav-desktop a {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    transition: color 0.2s ease;
+  }
+  .nav-desktop a:hover,
+  .nav-desktop a.active {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-desktop a.active {
+    color: var(--accent);
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+  }
+  .menu-toggle:hover {
+    background: var(--bg-subtle);
+    color: var(--text);
+  }
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    padding: 8px 24px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .nav-mobile a {
+    color: var(--text-secondary);
+    padding: 10px 0;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-mobile a:last-child {
+    border-bottom: none;
+  }
+  .nav-mobile a.active {
+    color: var(--accent);
+  }
+  @media (max-width: 720px) {
+    .nav-desktop {
+      display: none;
+    }
+    .menu-toggle {
+      display: inline-flex;
+    }
+    .nav-mobile.open {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  function setupHeader(): void {
+    const themeBtn = document.getElementById("theme-toggle");
+    const menuBtn = document.getElementById("menu-toggle");
+    const mobileNav = document.getElementById("mobile-nav");
+    const header = document.querySelector(".site-header");
+
+    // ---------- 主题切换 ----------
+    const applyThemeState = (): void => {
+      if (!(themeBtn instanceof HTMLButtonElement)) return;
+      const dark = document.documentElement.classList.contains("dark");
+      themeBtn.setAttribute("aria-pressed", String(dark));
+      themeBtn.setAttribute(
+        "aria-label",
+        dark ? "切换到浅色模式" : "切换到深色模式",
+      );
+    };
+    applyThemeState();
+
+    themeBtn?.addEventListener("click", () => {
+      const dark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", dark ? "dark" : "light");
+      applyThemeState();
+    });
+
+    // ---------- 移动菜单 ----------
+    if (menuBtn instanceof HTMLButtonElement && mobileNav) {
+      const setMenu = (open: boolean): void => {
+        mobileNav.classList.toggle("open", open);
+        menuBtn.setAttribute("aria-expanded", String(open));
+        menuBtn.setAttribute("aria-label", open ? "关闭菜单" : "打开菜单");
+      };
+
+      menuBtn.addEventListener("click", () => {
+        setMenu(!mobileNav.classList.contains("open"));
+      });
+
+      // 点击菜单链接后关闭
+      mobileNav.addEventListener("click", (e) => {
+        if (e.target instanceof HTMLAnchorElement) setMenu(false);
+      });
+
+      // Escape 关闭并还给按钮焦点
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileNav.classList.contains("open")) {
+          setMenu(false);
+          menuBtn.focus();
+        }
+      });
+
+      // 点击头部区域以外关闭
+      document.addEventListener("click", (e) => {
+        if (
+          mobileNav.classList.contains("open") &&
+          header &&
+          e.target instanceof Node &&
+          !header.contains(e.target)
+        ) {
+          setMenu(false);
+        }
+      });
+    }
+  }
+
+  setupHeader();
+</script>

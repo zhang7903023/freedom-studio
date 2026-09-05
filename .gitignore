@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.workbuddy/
+.DS_Store
+screenshots/
+lighthouse-*.json
+*.zip

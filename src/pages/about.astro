@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ABOUT, SITE, CONTACT } from "../config";
+
+const siteOrigin = Astro.site?.href ?? SITE.url;
+const profileJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name: SITE.nameEn,
+      url: siteOrigin,
+      description: ABOUT.intro,
+    },
+    url: new URL("/about/", siteOrigin).href,
+    inLanguage: SITE.locale,
+  },
+];
+---
+
+<BaseLayout
+  title="关于"
+  description={`${SITE.name} 创建者的自我介绍：记录 AI、互联网工具、网站、SEO、海外工具、数码和个人创业方面的真实实践。`}
+  path="/about/"
+  jsonLd={profileJsonLd}
+>
+  <section class="section">
+    <div class="container narrow">
+      <h1 class="page-title">{ABOUT.title}</h1>
+
+      <div class="prose about-prose">
+        <p>我是{SITE.name}的创建者。</p>
+        <p>
+          这里主要记录我在 AI、互联网工具、网站、SEO、海外工具、数码和个人创业方面的真实实践。
+        </p>
+        <blockquote>
+          <p>
+            我不是把自己包装成专家，而是把真正使用过、踩过坑、解决过的问题记录下来。
+          </p>
+        </blockquote>
+        <p>
+          希望这些内容可以帮助到同样在折腾互联网工具和个人项目的人。
+        </p>
+      </div>
+
+      <div class="about-links">
+        <a href="/blog/" class="btn btn-primary">阅读文章</a>
+        {CONTACT.email && <a href={`mailto:${CONTACT.email}`} class="btn btn-ghost">给我写信</a>}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 640px;
+  }
+  .page-title {
+    font-size: 2.2rem;
+    margin: 0 0 32px;
+  }
+  .about-prose p {
+    font-size: 1.05rem;
+  }
+  .about-links {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+</style>

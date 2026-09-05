@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import { getPublishedPosts, postsWithTag, allTags, tagSlug } from "../../utils/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return allTags(posts).map(({ tag }) => ({
+    params: { tag: tagSlug(tag) },
+    props: { tag, posts: postsWithTag(posts, tag) },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`标签：${tag}`}
+  description={`标签「${tag}」下的全部文章。`}
+  path={`/tags/${tagSlug(tag)}/`}
+>
+  <section class="section">
+    <div class="container">
+      <p class="crumb"><a href="/blog/">博客</a> / 标签</p>
+      <h1 class="page-title"># {tag}</h1>
+      <p class="section-sub">共 {posts.length} 篇文章</p>
+
+      <div class="article-grid">
+        {posts.map((post) => <ArticleCard post={post} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .crumb {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin: 0 0 10px;
+  }
+  .page-title {
+    font-size: 2.2rem;
+    margin: 0 0 8px;
+  }
+</style>

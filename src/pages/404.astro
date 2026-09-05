@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="页面不存在" description="你要找的页面不存在。" path="/404/">
+  <section class="section">
+    <div class="container center">
+      <p class="code">404</p>
+      <h1 class="title">页面不存在</h1>
+      <p class="desc">链接可能已失效，或者地址打错了。</p>
+      <a href="/" class="btn btn-primary">回到首页</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .center {
+    text-align: center;
+    padding: 80px 0;
+  }
+  .code {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin: 0;
+    letter-spacing: -0.03em;
+  }
+  .title {
+    font-size: 1.6rem;
+    margin: 8px 0 12px;
+  }
+  .desc {
+    color: var(--text-secondary);
+    margin: 0 0 32px;
+  }
+</style>

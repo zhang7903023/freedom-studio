@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import { CATEGORIES } from "../../config";
+import { getPublishedPosts, postsInCategory } from "../../utils/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  // 没有文章的分类不生成页面，也就不会进入 sitemap
+  return CATEGORIES.filter((c) => postsInCategory(posts, c.label).length > 0).map(
+    (c) => ({
+      params: { category: c.key },
+      props: { cat: c, posts: postsInCategory(posts, c.label) },
+    }),
+  );
+}
+
+const { cat, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={cat.label}
+  description={`${cat.label}：${cat.description}。${cat.label}分类下的全部实战文章。`}
+  path={`/category/${cat.key}/`}
+>
+  <section class="section">
+    <div class="container">
+      <p class="crumb"><a href="/categories/">分类</a> / {cat.label}</p>
+      <h1 class="page-title">{cat.label}</h1>
+      <p class="section-sub">{cat.description} · 共 {posts.length} 篇</p>
+
+      {posts.length > 0 ? (
+        <div class="article-grid">
+          {posts.map((post) => <ArticleCard post={post} />)}
+        </div>
+      ) : (
+        <p class="empty">这个分类还没有文章。</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .crumb {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin: 0 0 10px;
+  }
+  .page-title {
+    font-size: 2.2rem;
+    margin: 0 0 8px;
+  }
+  .empty {
+    color: var(--text-secondary);
+    padding: 40px 0;
+  }
+</style>

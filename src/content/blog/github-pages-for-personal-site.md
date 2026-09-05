@@ -1,6 +1,7 @@
 ---
 title: GitHub Pages 适不适合普通人做个人网站
 description: 免费、稳定、零运维，但也有一些限制。一篇实测分析。
+cover: cover-github-pages.png
 publishDate: 2026-09-05
 category: 网站与 SEO
 tags:

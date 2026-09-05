@@ -1,6 +1,7 @@
 ---
 title: 不会编程，我是怎么用 AI 做网站的
 description: 记录普通人使用 AI 工具搭建网站的真实过程。
+cover: cover-ai-website.png
 publishDate: 2026-09-05
 category: AI 实战
 tags:

@@ -1,12 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
-import { getPublishedPosts, postsWithTag, allTags, tagSlug } from "../../utils/posts";
+import { getPublishedPosts, postsWithTag, allTags, tagSlug, tagSlugRaw } from "../../utils/posts";
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
   return allTags(posts).map(({ tag }) => ({
-    params: { tag: tagSlug(tag) },
+    params: { tag: tagSlugRaw(tag) },
     props: { tag, posts: postsWithTag(posts, tag) },
   }));
 }

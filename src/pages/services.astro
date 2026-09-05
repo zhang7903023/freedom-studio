@@ -14,7 +14,7 @@ const hasContact = Object.values(CONTACT).some(Boolean);
     <div class="container">
       <h1 class="page-title">服务</h1>
       <p class="section-sub">
-        只列真正做过、能做好的事。有需要可以直接联系，先聊清楚问题，再谈要不要做。
+        下面这些是我真正做过、有实战经验的方向，不是服务目录。每一条都写清楚目前能提供到什么程度——具体合作之前，先联系说明你的需求，能做到什么、做不到什么我都会直接说。
       </p>
 
       <div class="service-grid">
@@ -22,6 +22,7 @@ const hasContact = Object.values(CONTACT).some(Boolean);
           <div class="service-item">
             <h2>{s.title}</h2>
             <p>{s.description}</p>
+            <p class="service-scope">{s.scope}</p>
           </div>
         ))}
       </div>
@@ -62,6 +63,12 @@ const hasContact = Object.values(CONTACT).some(Boolean);
     font-size: 0.94rem;
     margin: 0;
     line-height: 1.7;
+  }
+  .service-scope {
+    margin-top: 12px !important;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 0.88rem !important;
   }
   .service-cta {
     margin-top: 72px;

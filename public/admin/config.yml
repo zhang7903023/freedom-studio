@@ -30,6 +30,107 @@ media_folder: public/images
 public_folder: /images
 
 collections:
+  - name: settings
+    label: 站点设置
+    files:
+      - name: site_settings
+        label: 站点信息与页面内容
+        file: src/data/site.json
+        fields:
+          - label: 站点信息
+            name: site
+            widget: object
+            fields:
+              - label: 站点全称（仅用于 SEO / 分享卡片）
+                name: name
+                widget: string
+              - label: 顶栏 Logo 文字
+                name: navName
+                widget: string
+                hint: 当前为 X，改这里顶栏就跟着变
+              - label: 首页 Hero 大标题
+                name: heroTitle
+                widget: string
+              - label: 副标题
+                name: tagline
+                widget: string
+              - label: 站点简介
+                name: description
+                widget: text
+              - label: 首页 SEO 标题
+                name: title
+                widget: string
+              - label: 首页 SEO 描述
+                name: homeDescription
+                widget: text
+          - label: 关于页
+            name: about
+            widget: object
+            fields:
+              - label: 介绍
+                name: intro
+                widget: text
+              - label: 强调句
+                name: emphasis
+                widget: text
+          - label: 联系方式（留空的项不显示在网站上）
+            name: contact
+            widget: object
+            fields:
+              - label: 邮箱
+                name: email
+                widget: string
+                required: false
+              - label: 微信
+                name: wechat
+                widget: string
+                required: false
+              - label: Telegram
+                name: telegram
+                widget: string
+                required: false
+              - label: WhatsApp
+                name: whatsapp
+                widget: string
+                required: false
+              - label: X（Twitter）
+                name: x
+                widget: string
+                required: false
+              - label: YouTube
+                name: youtube
+                widget: string
+                required: false
+          - label: 社交链接（页脚，留空则不显示）
+            name: social
+            widget: object
+            fields:
+              - label: X（Twitter）完整链接
+                name: x
+                widget: string
+                required: false
+              - label: YouTube 完整链接
+                name: youtube
+                widget: string
+                required: false
+              - label: Telegram 完整链接
+                name: telegram
+                widget: string
+                required: false
+          - label: 服务列表
+            name: services
+            widget: list
+            fields:
+              - label: 服务名称
+                name: title
+                widget: string
+              - label: 服务描述
+                name: description
+                widget: text
+              - label: 范围说明
+                name: scope
+                widget: text
+                hint: 写清楚目前能提供到什么程度
   - name: blog
     label: 博客文章
     folder: src/content/blog

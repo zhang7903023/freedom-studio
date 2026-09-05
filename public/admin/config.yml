@@ -131,6 +131,32 @@ collections:
                 name: scope
                 widget: text
                 hint: 写清楚目前能提供到什么程度
+          - label: 分类管理
+            name: categories
+            widget: list
+            hint: 新增分类后，写文章时分类名填这里的「显示名称」即可自动归类。key 用英文小写加短横线，别用中文
+            fields:
+              - label: key（URL 英文标识）
+                name: key
+                widget: string
+              - label: 显示名称
+                name: label
+                widget: string
+              - label: 描述
+                name: description
+                widget: string
+                required: false
+          - label: 导航管理
+            name: nav
+            widget: list
+            hint: 顶栏导航，按顺序显示。href 填 / 开头的路径（如 /blog/）
+            fields:
+              - label: 名称
+                name: text
+                widget: string
+              - label: 链接
+                name: href
+                widget: string
   - name: blog
     label: 博客文章
     folder: src/content/blog

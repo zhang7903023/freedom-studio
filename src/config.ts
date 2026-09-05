@@ -20,6 +20,8 @@ const data = siteData as {
   contact: Record<string, string>;
   social: Record<string, string>;
   services: { title: string; description: string; scope: string }[];
+  categories: { key: string; label: string; description: string }[];
+  nav: { text: string; href: string }[];
 };
 
 export const SITE = {
@@ -85,14 +87,8 @@ export const SOCIAL: SocialLinks = {
   telegram: data.social.telegram ?? "",
 };
 
-/** 内容分类（key 为 URL slug，不要用中文改 key，只改 label） */
-export const CATEGORIES: { key: string; label: string; description: string }[] = [
-  { key: "ai", label: "AI 实战", description: "AI 工具的真实使用与落地" },
-  { key: "website-seo", label: "网站与 SEO", description: "建站、SEO 与 GEO 实践" },
-  { key: "overseas-tools", label: "海外工具", description: "海外互联网工具的使用与折腾" },
-  { key: "gadgets", label: "数码折腾", description: "数码设备与软件的折腾记录" },
-  { key: "startup", label: "创业笔记", description: "个人创业过程中的真实记录" },
-];
+/** 内容分类（key 为 URL slug；后台「站点设置」里可增改，key 用英文短横线） */
+export const CATEGORIES = data.categories;
 
 /** 文章 frontmatter 的 category 值 -> 分类 slug 映射 */
 export const CATEGORY_LABEL_TO_KEY: Record<string, string> = Object.fromEntries(
@@ -101,12 +97,5 @@ export const CATEGORY_LABEL_TO_KEY: Record<string, string> = Object.fromEntries(
 
 export const SERVICES = data.services;
 
-/** 导航六项（联系页为空状态时也保留入口） */
-export const NAV = [
-  { text: "首页", href: "/" },
-  { text: "博客", href: "/blog/" },
-  { text: "分类", href: "/categories/" },
-  { text: "关于", href: "/about/" },
-  { text: "服务", href: "/services/" },
-  { text: "联系", href: "/contact/" },
-];
+/** 导航（后台「站点设置」里可增删改） */
+export const NAV = data.nav;

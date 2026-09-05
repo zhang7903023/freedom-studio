@@ -51,5 +51,20 @@
       "description": "数码设备与常用软件的使用、配置和故障排查支持。",
       "scope": "目前提供：远程协助与经验指导，不涉及硬件维修。"
     }
+  ],
+  "categories": [
+    { "key": "ai", "label": "AI 实战", "description": "AI 工具的真实使用与落地" },
+    { "key": "website-seo", "label": "网站与 SEO", "description": "建站、SEO 与 GEO 实践" },
+    { "key": "overseas-tools", "label": "海外工具", "description": "海外互联网工具的使用与折腾" },
+    { "key": "gadgets", "label": "数码折腾", "description": "数码设备与软件的折腾记录" },
+    { "key": "startup", "label": "创业笔记", "description": "个人创业过程中的真实记录" }
+  ],
+  "nav": [
+    { "text": "首页", "href": "/" },
+    { "text": "博客", "href": "/blog/" },
+    { "text": "分类", "href": "/categories/" },
+    { "text": "关于", "href": "/about/" },
+    { "text": "服务", "href": "/services/" },
+    { "text": "联系", "href": "/contact/" }
   ]
 }

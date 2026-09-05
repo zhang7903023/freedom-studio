@@ -21,8 +21,8 @@ const contactItems = [
         <strong>{SITE.name}</strong>
         <p>{SITE.tagline}</p>
       </div>
-      <div class="footer-links">
-        {socialItems.length > 0 || contactItems.length > 0 ? (
+      {(socialItems.length > 0 || contactItems.length > 0) && (
+        <div class="footer-links">
           <ul>
             {contactItems.map((c) => (
               <li><a href={c.href}>{c.label}</a></li>
@@ -33,8 +33,8 @@ const contactItems = [
               </li>
             ))}
           </ul>
-        ) : null}
-      </div>
+        </div>
+      )}
     </div>
     <div class="footer-bottom">
       <span>© {year} {SITE.name} · 记录真实的互联网实践</span>

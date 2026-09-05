@@ -1,16 +1,27 @@
-# Decap CMS 配置 —— 自由行Studio
-# 登录网关：DecapBridge（免费版，Google 登录）
-# 把下面两处的 SITE_ID 换成 DecapBridge 后台生成的站点 ID 即可
-
 backend:
   name: git-gateway
+  repo: zhang7903023/freedom-studio
+  branch: main
+  auth_type: pkce
   base_url: https://auth.decapbridge.com
-  auth_endpoint: /sites/SITE_ID_HERE/pkce
-  auth_token_endpoint: /sites/SITE_ID_HERE/token
+  auth_endpoint: /sites/a6ad6ddb-414f-408a-9bd9-595b60c2da11/pkce
+  auth_token_endpoint: /sites/a6ad6ddb-414f-408a-9bd9-595b60c2da11/token
   gateway_url: https://gateway.decapbridge.com
+  commit_messages:
+    create: "Create {{collection}} '{{slug}}' - {{author-name}} via DecapBridge"
+    update: "Update {{collection}} '{{slug}}' - {{author-name}} via DecapBridge"
+    delete: "Delete {{collection}} '{{slug}}' - {{author-name}} via DecapBridge"
+    uploadMedia: "Upload '{{path}}' - {{author-name}} via DecapBridge"
+    deleteMedia: "Delete '{{path}}' - {{author-name}} via DecapBridge"
+
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
 
 site_url: https://z8en.com
-logo_url: https://z8en.com/favicon.svg
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 locale: zh_Hans
 display_url: z8en.com
 

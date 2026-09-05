@@ -123,6 +123,8 @@ const jsonLd = [
           </div>
         )}
 
+        <p class="rss-hint">喜欢这类内容？<a href="/rss.xml">订阅 RSS</a>，新文章会第一时间推送给你。</p>
+
         <div class="post-nav">
           <a href="/blog/" class="back-link">← 返回博客</a>
           <div class="adjacent">
@@ -184,6 +186,18 @@ const jsonLd = [
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+  }
+  .rss-hint {
+    margin-top: 28px;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+  }
+  .rss-hint a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .rss-hint a:hover {
+    text-decoration: underline;
   }
   .post-nav {
     margin-top: 48px;

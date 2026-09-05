@@ -55,9 +55,9 @@ export function postsWithTag(posts: Post[], tag: string): Post[] {
   );
 }
 
-/** 标签 URL slug（小写、空格转连字符） */
+/** 标签 URL slug（小写、空格转连字符、百分号编码，中文标签路径也可预测可分享） */
 export function tagSlug(tag: string): string {
-  return tag.toLowerCase().trim().replace(/\s+/g, "-");
+  return encodeURIComponent(tag.toLowerCase().trim().replace(/\s+/g, "-"));
 }
 
 /** 所有标签及文章数，按数量倒序 */

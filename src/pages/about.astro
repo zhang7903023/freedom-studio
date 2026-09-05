@@ -30,23 +30,41 @@ const profileJsonLd = [
       <h1 class="page-title">{ABOUT.title}</h1>
 
       <div class="prose about-prose">
-        <p>我是{SITE.name}的创建者。</p>
+        <h2>我是谁</h2>
         <p>
-          这里主要记录我在 AI、互联网工具、网站、SEO、海外工具、数码和个人创业方面的真实实践。
+          我是一个长期折腾互联网工具的普通人。白天处理各种技术问题，晚上把自己踩过的坑写成文章，发在这个叫自由行Studio的地方。
         </p>
+
+        <h2>我做过什么</h2>
+        <ul>
+          <li>
+            用 AI 辅助从零搭起了这个网站——从技术选型、写代码到部署上线，整个过程记录在博客里。
+          </li>
+          <li>
+            折腾过大量 AI 编程工具（Codex、Claude 等），踩过的坑和解决办法都有文章可查。
+          </li>
+          <li>
+            长期维护代理、网络调试相关的技术实践，对海外互联网工具的可用性问题有第一手经验。
+          </li>
+        </ul>
+
+        <h2>这里写什么</h2>
+        <p>写真实做过、踩过坑、解决过的问题：AI 工具的落地用法、建站与 SEO 实践、海外工具的折腾记录、数码设备的使用经验。</p>
+        <p>
+          <strong>不写</strong>没验证过的理论教程，<strong>不写</strong>编出来的成功故事，<strong>不接</strong>软广通稿。
+        </p>
+
         <blockquote>
-          <p>
-            我不是把自己包装成专家，而是把真正使用过、踩过坑、解决过的问题记录下来。
-          </p>
+          <p>{ABOUT.emphasis}</p>
         </blockquote>
-        <p>
-          希望这些内容可以帮助到同样在折腾互联网工具和个人项目的人。
-        </p>
       </div>
 
-      <div class="about-links">
-        <a href="/blog/" class="btn btn-primary">阅读文章</a>
-        {CONTACT.email && <a href={`mailto:${CONTACT.email}`} class="btn btn-ghost">给我写信</a>}
+      <div class="about-next">
+        <p class="next-hint">想看看我都在折腾什么？</p>
+        <div class="about-links">
+          <a href="/blog/" class="btn btn-primary">去读博客</a>
+          {CONTACT.email && <a href={`mailto:${CONTACT.email}`} class="btn btn-ghost">给我写信</a>}
+        </div>
       </div>
     </div>
   </section>
@@ -63,8 +81,15 @@ const profileJsonLd = [
   .about-prose p {
     font-size: 1.05rem;
   }
+  .about-next {
+    margin-top: 48px;
+  }
+  .next-hint {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0 0 16px;
+  }
   .about-links {
-    margin-top: 40px;
     display: flex;
     gap: 16px;
     flex-wrap: wrap;

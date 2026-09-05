@@ -6,8 +6,10 @@ import { SITE, ABOUT, SERVICES } from "../config";
 import { getPublishedPosts } from "../utils/posts";
 
 const posts = await getPublishedPosts();
-const latest = posts.slice(0, 6);
 const featured = posts.filter((p) => p.data.featured).slice(0, 3);
+const featuredIds = new Set(featured.map((p) => p.id));
+// 最新文章排除已出现在精选里的，避免同一篇出现两次
+const latest = posts.filter((p) => !featuredIds.has(p.id)).slice(0, 6);
 ---
 
 <BaseLayout

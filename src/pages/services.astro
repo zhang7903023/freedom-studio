@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { SERVICES, SITE } from "../config";
+import { SERVICES, SITE, CONTACT } from "../config";
+
+const hasContact = Object.values(CONTACT).some(Boolean);
 ---
 
 <BaseLayout
@@ -27,7 +29,9 @@ import { SERVICES, SITE } from "../config";
       <div class="service-cta">
         <h2>感兴趣？</h2>
         <p>描述一下你的需求，我会直接告诉你能不能做、大概怎么做。</p>
-        <a href="/contact/" class="btn btn-primary">咨询 / 联系我</a>
+        <a href={hasContact ? "/contact/" : "/about/"} class="btn btn-primary">
+          {hasContact ? "咨询 / 联系我" : "了解我"}
+        </a>
       </div>
     </div>
   </section>

@@ -27,8 +27,14 @@ export function readingTime(post: Post): string {
   return `${minutes} 分钟`;
 }
 
+/** 按中国时区格式化日期（CI 是 UTC 时也不会差一天） */
 export function formatDate(date: Date): string {
-  return `${date.getFullYear()} 年 ${date.getMonth() + 1} 月 ${date.getDate()} 日`;
+  return new Intl.DateTimeFormat("zh-CN", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
 }
 
 /** 文章分类 -> 分类页 URL */

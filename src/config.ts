@@ -108,12 +108,16 @@ export const SERVICES = [
   },
 ] as const;
 
-/** 导航 */
-export const NAV = [
+/** 导航（在 CONTACT 里至少填一种联系方式后，「联系」会自动出现在导航里） */
+const NAV_ITEMS = [
   { text: "首页", href: "/" },
   { text: "博客", href: "/blog/" },
   { text: "分类", href: "/categories/" },
   { text: "关于", href: "/about/" },
   { text: "服务", href: "/services/" },
   { text: "联系", href: "/contact/" },
-] as const;
+];
+
+export const NAV = NAV_ITEMS.filter(
+  (item) => item.href !== "/contact/" || Object.values(CONTACT).some(Boolean),
+);

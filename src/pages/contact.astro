@@ -40,9 +40,8 @@ const channels = [
       ) : (
         <div class="placeholder">
           <p>联系方式正在整理中。</p>
-          <p class="hint">
-            在 <code>src/config.ts</code> 的 <code>CONTACT</code> 中填入 Email、微信、Telegram 等账号，这里会自动展示。
-          </p>
+          <p class="hint">可以先阅读博客文章了解我在做的事，联系方式放出来后会第一时间更新在这里。</p>
+          <p><a href="/about/">了解我 →</a></p>
         </div>
       )}
     </div>
@@ -84,11 +83,11 @@ const channels = [
     font-size: 0.9rem;
     color: var(--text-secondary);
   }
-  .placeholder code {
-    font-family: var(--font-mono);
-    font-size: 0.88em;
-    background: var(--code-bg);
-    padding: 0.15em 0.4em;
-    border-radius: 5px;
+  .placeholder a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .placeholder a:hover {
+    text-decoration: underline;
   }
 </style>

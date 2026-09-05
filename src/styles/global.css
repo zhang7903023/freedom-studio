@@ -1,24 +1,30 @@
-/* 全局样式 —— 极简 / Apple 式留白 / 科技蓝强调 / 深浅色自适应 */
+/* 全局样式 —— 浅色默认 / 大留白 / 行式目录 / 黑白主色+科技蓝强调 */
 
 :root {
   color-scheme: light;
   --bg: #ffffff;
-  --bg-subtle: #f5f5f7;
+  --bg-soft: #fafafa;
+  --ink: #111111;
   --text: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-tertiary: #86868b;
-  --border: #e8e8ed;
-  --accent: #0071e3;
-  --accent-hover: #0077ed;
+  --muted: #6e6e73;
+  --faint: #86868b;
+  --line: #e5e5e5;
+  --accent: #007aff;
+  /* 兼容旧变量名（全站组件引用） */
+  --bg-subtle: var(--bg-soft);
+  --text-secondary: var(--muted);
+  --text-tertiary: var(--faint);
+  --border: var(--line);
+  --accent-hover: #0071ed;
   --accent-badge: #0060c9;
-  --accent-soft: rgba(0, 113, 227, 0.08);
+  --accent-soft: rgba(0, 122, 255, 0.08);
   --code-bg: #f6f6f8;
   --card-bg: #ffffff;
-  --header-bg: rgba(255, 255, 255, 0.8);
+  --header-bg: rgba(255, 255, 255, 0.82);
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --radius: 12px;
-  --max-width: 1080px;
-  --content-width: 42rem;
+  --radius: 10px;
+  --max-width: 1200px;
+  --content-width: 45rem;
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
     "Helvetica Neue", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
@@ -27,19 +33,20 @@
 
 html.dark {
   color-scheme: dark;
-  --bg: #0d0d0f;
-  --bg-subtle: #161618;
+  --bg: #0b0b0b;
+  --bg-soft: #111111;
+  --ink: #f5f5f7;
   --text: #f5f5f7;
-  --text-secondary: #a1a1a6;
-  --text-tertiary: #86868b;
-  --border: #2a2a2e;
-  --accent: #2997ff;
+  --muted: #a1a1a6;
+  --faint: #86868b;
+  --line: #2c2c2e;
+  --accent: #0a84ff;
   --accent-hover: #409cff;
   --accent-badge: #6cb2ff;
-  --accent-soft: rgba(41, 151, 255, 0.12);
+  --accent-soft: rgba(10, 132, 255, 0.14);
   --code-bg: #1b1b1e;
-  --card-bg: #161618;
-  --header-bg: rgba(13, 13, 15, 0.8);
+  --card-bg: #111111;
+  --header-bg: rgba(11, 11, 11, 0.82);
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -127,9 +134,12 @@ h1, h2, h3, h4 {
 
 /* ---------- 按钮 ---------- */
 .btn {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 980px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 28px;
+  border-radius: 10px;
   font-size: 1rem;
   font-weight: 500;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
@@ -140,19 +150,23 @@ h1, h2, h3, h4 {
   text-decoration: none;
 }
 .btn-primary {
-  background: var(--accent);
+  background: var(--ink);
   color: #fff;
 }
 .btn-primary:hover {
-  background: var(--accent-hover);
+  background: #000;
+}
+html.dark .btn-primary:hover {
+  background: #fff;
+  color: var(--ink);
 }
 .btn-ghost {
-  color: var(--accent);
-  border: 1px solid var(--border);
-  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: var(--bg);
 }
 .btn-ghost:hover {
-  border-color: var(--accent);
+  border-color: var(--text);
 }
 
 /* ---------- 标签 / 徽章 ---------- */
@@ -186,24 +200,96 @@ h1, h2, h3, h4 {
 }
 
 .meta {
-  color: var(--text-secondary);
-  font-size: 0.86rem;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
-/* ---------- 文章卡片 ---------- */
-.article-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+/* ---------- 行式文章目录 ---------- */
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-@media (max-width: 900px) {
-  .article-grid {
-    grid-template-columns: repeat(2, 1fr);
+.post-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+  color: inherit;
+}
+.post-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.post-row:hover {
+  text-decoration: none;
+}
+.post-row-meta {
+  flex: 0 0 168px;
+  color: var(--faint);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.post-row-meta a {
+  color: var(--faint);
+}
+.post-row-meta a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.post-row-body {
+  flex: 1;
+  min-width: 0;
+}
+.post-row-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+.post-row-title a {
+  color: inherit;
+}
+.post-row-desc {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 4px 0 0;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-row-arrow {
+  flex: 0 0 auto;
+  color: var(--faint);
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.post-row:hover .post-row-title {
+  color: var(--accent);
+}
+.post-row:hover .post-row-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+@media (max-width: 720px) {
+  .post-row {
+    gap: 14px;
   }
-}
-@media (max-width: 600px) {
-  .article-grid {
-    grid-template-columns: 1fr;
+  .post-row-meta {
+    flex: 0 0 auto;
+    text-align: left;
+  }
+  .post-row-arrow {
+    display: none;
+  }
+  .post-row-title {
+    font-size: 1.1rem;
   }
 }
 
@@ -370,39 +456,32 @@ h1, h2, h3, h4 {
   color: var(--accent);
 }
 
-/* ---------- 分类网格 ---------- */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 14px;
+/* ---------- 分类标签行 ---------- */
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
-.category-item {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  display: block;
-  background: var(--card-bg);
+.category-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
-.category-item:hover {
+.category-tag:hover {
   border-color: var(--accent);
-  box-shadow: var(--shadow);
+  color: var(--accent);
   text-decoration: none;
 }
-.category-item .cat-name {
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: var(--text);
-}
-.category-item .cat-count {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  margin-left: 8px;
-}
-.category-item .cat-desc {
-  color: var(--text-secondary);
-  font-size: 0.88rem;
-  margin-top: 6px;
+.category-tag .cat-count {
+  color: var(--faint);
+  font-size: 0.82rem;
 }
 
 /* ---------- 分页 ---------- */

@@ -25,7 +25,7 @@ const { tag, posts } = Astro.props;
       <h1 class="page-title"># {tag}</h1>
       <p class="section-sub">共 {posts.length} 篇文章</p>
 
-      <div class="article-grid">
+      <div class="post-list">
         {posts.map((post) => <ArticleCard post={post} />)}
       </div>
     </div>

@@ -3,19 +3,18 @@ import { CATEGORIES } from "../config";
 import { getPublishedPosts, postsInCategory } from "../utils/posts";
 
 const posts = await getPublishedPosts();
-// 只展示有文章的分类，与分类页生成逻辑保持一致
+// 只展示有文章的分类（0 篇隐藏），与分类页生成逻辑保持一致
 const activeCategories = CATEGORIES.map((c) => ({
   ...c,
   count: postsInCategory(posts, c.label).length,
 })).filter((c) => c.count > 0);
 ---
 
-<div class="category-grid">
+<div class="category-tags">
   {activeCategories.map((c) => (
-    <a href={`/category/${c.key}/`} class="category-item">
-      <span class="cat-name">{c.label}</span>
-      <span class="cat-count">{c.count} 篇</span>
-      <p class="cat-desc">{c.description}</p>
+    <a href={`/category/${c.key}/`} class="category-tag">
+      {c.label}
+      <span class="cat-count">{c.count}</span>
     </a>
   ))}
 </div>

@@ -67,7 +67,7 @@ const tags = allTags(posts);
         共 {total} 篇文章，按发布时间排序{totalPages > 1 && ` · 第 ${currentPage} / ${totalPages} 页`}。
       </p>
 
-      <div class="article-grid">
+      <div class="post-list">
         {pagePosts.map((post) => <ArticleCard post={post} />)}
       </div>
 

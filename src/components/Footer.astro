@@ -1,83 +1,47 @@
 ---
-import { SITE, SOCIAL, CONTACT } from "../config";
+import { SOCIAL, CONTACT } from "../config";
 
 const year = new Date().getFullYear();
 
-const socialItems = [
-  { label: "X", href: SOCIAL.x },
-  { label: "YouTube", href: SOCIAL.youtube },
-  { label: "Telegram", href: SOCIAL.telegram },
-].filter((s) => s.href);
-
-const contactItems = [
-  { label: "Email", href: CONTACT.email ? `mailto:${CONTACT.email}` : "" },
-].filter((c) => c.href);
+const footerLinks = [
+  { label: "X", href: SOCIAL.x, external: true },
+  { label: "YouTube", href: SOCIAL.youtube, external: true },
+  { label: "Telegram", href: SOCIAL.telegram, external: true },
+  { label: "Email", href: CONTACT.email ? `mailto:${CONTACT.email}` : "", external: false },
+  { label: "RSS", href: "/rss.xml", external: false },
+].filter((l) => l.href);
 ---
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <strong>{SITE.name}</strong>
-        <p>{SITE.tagline}</p>
-      </div>
-      {(socialItems.length > 0 || contactItems.length > 0) && (
-        <div class="footer-links">
-          <ul>
-            {contactItems.map((c) => (
-              <li><a href={c.href}>{c.label}</a></li>
-            ))}
-            {socialItems.map((s) => (
-              <li>
-                <a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-    <div class="footer-bottom">
-      <span>© {year} {SITE.name} · 记录真实的互联网实践</span>
-      <span class="footer-meta">
-        <a href="/rss.xml">RSS</a>
-        <a href="/sitemap-index.xml">站点地图</a>
-      </span>
-    </div>
+  <div class="container footer-inner">
+    <span>© {year}</span>
+    <ul class="footer-links">
+      {footerLinks.map((l) => (
+        <li>
+          {l.external ? (
+            <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+          ) : (
+            <a href={l.href}>{l.label}</a>
+          )}
+        </li>
+      ))}
+    </ul>
   </div>
 </footer>
 
 <style>
-  .footer-top {
+  .footer-inner {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    gap: 32px;
+    gap: 16px;
     flex-wrap: wrap;
   }
-  .footer-brand strong {
-    color: var(--text);
-    font-size: 1rem;
-  }
-  .footer-brand p {
-    margin: 6px 0 0;
-  }
-  .footer-links ul {
+  .footer-links {
     list-style: none;
     display: flex;
     gap: 20px;
     margin: 0;
     padding: 0;
-  }
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 28px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-  }
-  .footer-meta {
-    display: flex;
-    gap: 16px;
   }
 </style>

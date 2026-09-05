@@ -87,13 +87,15 @@ const jsonLd = [
     <article class="post-layout">
       <div class="post-main">
         <header class="post-header">
-          <a href={categoryUrl(category)} class="badge">{category}</a>
-          <h1 class="post-title">{title}</h1>
           <div class="post-meta meta">
-            <span>发布于 {formatDate(publishDate)}</span>
-            {updatedDate && <span>更新于 {formatDate(updatedDate)}</span>}
+            <a href={categoryUrl(category)}>{category}</a>
+            <span>·</span>
+            <span>{formatDate(publishDate)}</span>
+            <span>·</span>
             <span>阅读约 {readingTime(post)}</span>
           </div>
+          <h1 class="post-title">{title}</h1>
+          <p class="post-desc">{description}</p>
         </header>
 
         {cover && (
@@ -146,9 +148,9 @@ const jsonLd = [
         {related.length > 0 && (
           <section class="related">
             <h2 class="related-title">相关文章</h2>
-            <div class="article-grid">
-              {related.map((p) => <ArticleCard post={p} />)}
-            </div>
+          <div class="post-list related-list">
+            {related.map((p) => <ArticleCard post={p} />)}
+          </div>
           </section>
         )}
       </div>
@@ -166,16 +168,35 @@ const jsonLd = [
   }
   .post-header {
     margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .post-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+  .post-meta a {
+    color: var(--faint);
+  }
+  .post-meta a:hover {
+    color: var(--accent);
+    text-decoration: none;
   }
   .post-title {
     font-size: clamp(1.7rem, 4vw, 2.4rem);
     margin: 14px 0 12px;
     letter-spacing: -0.02em;
   }
-  .post-meta {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
+  .post-desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.7;
+  }
+  .related-list {
+    margin-top: 8px;
   }
   .post-cover {
     margin-bottom: 32px;

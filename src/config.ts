@@ -4,10 +4,14 @@
  */
 
 export const SITE = {
-  /** 站点名称（主品牌，始终显示中文） */
+  /** 站点名称（仅用于浏览器 title / OG / JSON-LD 等给搜索引擎看的位置） */
   name: "自由行Studio",
   /** 英文名（必要位置使用） */
   nameEn: "Ziyouxing Studio",
+  /** 顶栏导航 Logo 只显示这几个字 */
+  navName: "自由行",
+  /** 首页 Hero 大标题（不要放站名） */
+  heroTitle: "做过的，才写。",
   /** 副标题 */
   tagline: "AI、互联网工具与实战经验",
   /** 首页简介 */
@@ -27,9 +31,9 @@ export const SITE = {
 } as const;
 
 export const ABOUT = {
-  title: "关于自由行Studio",
+  title: "关于",
   intro:
-    "自由行Studio 是一个记录真实互联网实践的个人工作室博客，内容主要围绕 AI 工具、网站建设、SEO、海外互联网工具、数码设备和个人创业实践。",
+    "记录真实的互联网实践：AI 工具、网站建设、SEO、海外互联网工具、数码设备和个人创业。不是教程合集，是用过、错过、解决过之后留下的笔记。",
   emphasis:
     "不是理论教程堆砌，而是真实使用、真实踩坑和真实解决问题的记录。",
 } as const;
@@ -113,8 +117,8 @@ export const SERVICES = [
   },
 ] as const;
 
-/** 导航（在 CONTACT 里至少填一种联系方式后，「联系」会自动出现在导航里） */
-const NAV_ITEMS = [
+/** 导航六项（联系页为空状态时也保留入口） */
+export const NAV = [
   { text: "首页", href: "/" },
   { text: "博客", href: "/blog/" },
   { text: "分类", href: "/categories/" },
@@ -122,7 +126,3 @@ const NAV_ITEMS = [
   { text: "服务", href: "/services/" },
   { text: "联系", href: "/contact/" },
 ];
-
-export const NAV = NAV_ITEMS.filter(
-  (item) => item.href !== "/contact/" || Object.values(CONTACT).some(Boolean),
-);

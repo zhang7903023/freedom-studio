@@ -30,7 +30,7 @@ const { cat, posts } = Astro.props;
       <p class="section-sub">{cat.description} · 共 {posts.length} 篇</p>
 
       {posts.length > 0 ? (
-        <div class="article-grid">
+        <div class="post-list">
           {posts.map((post) => <ArticleCard post={post} />)}
         </div>
       ) : (

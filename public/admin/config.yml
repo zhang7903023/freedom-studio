@@ -163,14 +163,12 @@ collections:
             fields:
               - label: 自定义 CSS
                 name: customCss
-                widget: code
-                default_language: css
+                widget: text
                 required: false
                 hint: 直接覆盖全站样式，例如改颜色、字号。保存后 1 分钟生效
               - label: 自定义 Head 代码
                 name: customHead
-                widget: code
-                default_language: html
+                widget: text
                 required: false
                 hint: 原样注入每个页面 <head>，可放统计脚本、搜索引擎验证 meta 等
   - name: blog

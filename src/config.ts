@@ -14,7 +14,7 @@ export const SITE = {
   description:
     "记录 AI、网站、SEO、海外工具、数码设备与个人创业过程中真实踩过的坑和解决方法。",
   /** 部署后改成你自己的域名，末尾不带斜杠。本地开发可保持不变 */
-  url: "https://zyxstudio.net",
+  url: "https://z8en.com",
   /** 首页 title（SEO） */
   title: "自由行Studio｜AI、互联网工具与实战经验",
   /** 首页 description（SEO） */

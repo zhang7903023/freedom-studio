@@ -1,0 +1,72 @@
+# Decap CMS 配置 —— 自由行Studio
+# 登录网关：DecapBridge（免费版，Google 登录）
+# 把下面两处的 SITE_ID 换成 DecapBridge 后台生成的站点 ID 即可
+
+backend:
+  name: git-gateway
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/SITE_ID_HERE/pkce
+  auth_token_endpoint: /sites/SITE_ID_HERE/token
+  gateway_url: https://gateway.decapbridge.com
+
+site_url: https://z8en.com
+logo_url: https://z8en.com/favicon.svg
+locale: zh_Hans
+display_url: z8en.com
+
+# 文章里插入的图片存到 public/images/，网页上用 /images/xxx.png 引用
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: blog
+    label: 博客文章
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    preview: false
+    summary: "{{title}} - {{category}} · {{publishDate}}"
+    fields:
+      - label: 标题
+        name: title
+        widget: string
+      - label: 一句话摘要
+        name: description
+        widget: string
+      - label: 发布日期
+        name: publishDate
+        widget: datetime
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+      - label: 分类
+        name: category
+        widget: string
+        default: 随笔
+        hint: 建议：AI 工具 / 建站 / 折腾记录 / 创业笔记
+      - label: 标签
+        name: tags
+        widget: list
+        required: false
+        default: []
+      - label: 封面图（可选）
+        name: cover
+        widget: string
+        required: false
+        hint: 填文件名，如 cover-xxx.png（图片需放在 src/assets/covers/）。留空则无封面
+      - label: 首页精选
+        name: featured
+        widget: boolean
+        default: false
+        required: false
+      - label: 草稿
+        name: draft
+        widget: boolean
+        default: false
+        required: false
+        hint: 开 true 则不显示在网站上
+      - label: 正文
+        name: body
+        widget: markdown

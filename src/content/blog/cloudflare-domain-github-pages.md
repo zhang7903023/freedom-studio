@@ -2,7 +2,7 @@
 title: 给博客绑上自己的域名：Cloudflare + GitHub Pages 实录
 description: 从买域名到 HTTPS 证书生效，全程只花了不到半小时，中间还踩了一个证书卡死的坑。
 cover: cover-cloudflare-domain.png
-publishDate: 2026-09-05
+publishDate: 2026-08-30
 category: 网站与 SEO
 tags:
   - 域名

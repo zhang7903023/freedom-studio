@@ -2,7 +2,7 @@
 title: 普通人为什么还值得拥有一个自己的网站
 description: 社交平台这么多，自建网站还有意义吗？我的答案是：有，而且比以前更有。
 cover: cover-own-site.png
-publishDate: 2026-09-05
+publishDate: 2026-08-14
 category: 创业笔记
 tags:
   - 网站

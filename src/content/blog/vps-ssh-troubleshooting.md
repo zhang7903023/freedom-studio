@@ -2,7 +2,7 @@
 title: 便宜 VPS 翻车记：SSH 握手失败排查全过程
 description: 新买的 VPS SSH 连不上，所有设备全挂。从客户端排查到 VNC 控制台，最后发现是系统层的问题。
 cover: cover-vps-ssh.png
-publishDate: 2026-09-05
+publishDate: 2026-09-04
 category: 海外工具
 tags:
   - VPS

@@ -2,7 +2,7 @@
 title: Codex 使用过程中我踩过的几个坑
 description: 几个真实的踩坑记录，帮你少走弯路。
 cover: cover-codex-pitfalls.png
-publishDate: 2026-09-05
+publishDate: 2026-08-26
 category: AI 实战
 tags:
   - AI

@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
@@ -20,6 +20,8 @@ const { post, all } = Astro.props;
 const { Content, headings } = await render(post);
 const { title, description, publishDate, updatedDate, category, tags } = post.data;
 const cover = resolveCover(post.data.cover);
+// 分享图（og:image/twitter:image）用文章自己的封面，没有封面则回退全站 og.png
+const ogImage = cover ? (await getImage({ src: cover, width: 1200 })).src : undefined;
 const url = `/blog/${post.id}/`;
 
 const { newer, older } = adjacentPosts(post, all);
@@ -78,6 +80,7 @@ const jsonLd = [
   description={description}
   path={url}
   type="article"
+  image={ogImage}
   jsonLd={jsonLd}
   publishedTime={publishDate.toISOString()}
   modifiedTime={(updatedDate ?? publishDate).toISOString()}

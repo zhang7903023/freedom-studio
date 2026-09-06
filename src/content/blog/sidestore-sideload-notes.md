@@ -2,7 +2,7 @@
 title: iOS 免越狱侧载实录：SideStore 从装到能用
 description: 不越狱、不掏开发者账号年费，让 iPhone 装上商店里没有的 App。踩坑过程全记录。
 cover: cover-sidestore.png
-publishDate: 2026-09-05
+publishDate: 2026-09-02
 category: 数码折腾
 tags:
   - iOS

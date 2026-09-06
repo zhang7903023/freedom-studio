@@ -2,7 +2,7 @@
 title: 我为什么开始写这个博客
 description: 一个简单的开始：把真实做过的事情记录下来，而不是收藏一堆没打开过的教程。
 cover: cover-why-blog.png
-publishDate: 2026-09-05
+publishDate: 2026-08-10
 category: 创业笔记
 tags:
   - 博客

@@ -6,7 +6,7 @@ const WIDTH = 1200;
 const HEIGHT = 900;
 const DEFAULT_STATE = Object.freeze({
   title: "把真实的经历，写成值得收藏的内容。",
-  subtitle: "自由行Studio",
+  subtitle: "X",
   color: "#657553",
   layout: "editorial",
   image: "",
@@ -153,7 +153,7 @@ function drawPhoto(ctx, state, image) {
   ctx.fillRect(72, 84, 120, 10);
   ctx.font = "600 23px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
   ctx.fillStyle = "rgba(255,255,255,.88)";
-  ctx.fillText("自由行Studio · 实践笔记", 72, 145);
+  ctx.fillText("X · 实践笔记", 72, 145);
   ctx.font = "700 88px -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif";
   ctx.fillStyle = "#ffffff";
   const lines = wrapLines(ctx, state.title || "未命名文章", 960, 4);
@@ -200,7 +200,7 @@ function drawMinimal(ctx, state, image) {
   }
   ctx.fillStyle = state.color;
   ctx.font = "600 25px -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif";
-  ctx.fillText("自由行Studio / 保存每一段路", 105, 132);
+  ctx.fillText("X / 保存每一段路", 105, 132);
   ctx.fillStyle = "#15161a";
   ctx.font = "700 84px -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif";
   const lines = wrapLines(ctx, state.title || "未命名文章", 650, 4);

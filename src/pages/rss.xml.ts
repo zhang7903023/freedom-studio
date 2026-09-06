@@ -16,5 +16,7 @@ export async function GET(context: any) {
       categories: [post.data.category, ...post.data.tags],
     })),
     customData: "<language>zh-cn</language>",
+    // 浏览器直接打开 rss.xml 时套用这份可读样式（RSS 阅读器不受影响）
+    stylesheet: "/rss.xsl",
   });
 }
